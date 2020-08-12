@@ -105,33 +105,30 @@ int main(){
 		cin>>classname;
 		
 		cout<<"If the files "<<classname<<".cpp and "<<classname<<".h already exist, they will be overwritten! Do you wish to continue? (y/n): ";
-		do {
-			cin>>ynchoice;
-			if (ynchoice=="y" or ynchoice=="Y"){
-				myprogheader.open(classname+".h", ios::in | ios::out | ios::trunc);
-				assert(myprogheader);
+		cin>>ynchoice;
+		if (ynchoice=="y" or ynchoice=="Y"){
+			myprogheader.open(classname+".h", ios::in | ios::out | ios::trunc);
+			assert(myprogheader);
 
-				myprogimp.open(classname+".cpp", ios::in | ios::out | ios::trunc);
-				assert(myprogimp);
-			
-				if (myprogheader.is_open() and myprogimp.is_open()){
-					cout<<"\n\n"<<classname<<".h and "<<classname<<".cpp have been successfully created!\n";
-				}
-				else {
-					cout<<"Oh shit, there was some stupid issue creating the files :/\nWe out.";
-					return 1;
-				}
-			}
-			else if (ynchoice=="n" or ynchoice=="N"){
-				cout<<"\nYou chose to abort so no files were created or overwritten. Here's a Later Gator:\n";
-				cout<<gator;
-				return 0;
+			myprogimp.open(classname+".cpp", ios::in | ios::out | ios::trunc);
+			assert(myprogimp);
+
+			if (myprogheader.is_open() and myprogimp.is_open()){
+				cout<<"\n\n"<<classname<<".h and "<<classname<<".cpp have been successfully created!\n";
 			}
 			else {
-				cout<<"That was not a valid input stupid, try again. (y/n): ";
+				cout<<"Oh shit, there was some stupid issue creating the files :/\nWe out.";
+				return 1;
 			}
-		} while (ynchoice!="y" or ynchoice!="Y" or ynchoice!="n" or ynchoice!="N");
-
+		}
+		else if (ynchoice=="n" or ynchoice=="N"){
+			cout<<"\nYou chose to abort so no files were created or overwritten. Here's a Later Gator:\n";
+			cout<<gator;
+			return 0;
+		}
+		else {
+			cout<<"That was not a valid input stupid, try again. (y/n): ";
+		}
 		myprog<<"#include \""<<classname<<".h\"\n";		
 		
 		if (classchoice=="y" or classchoice=="Y"){
